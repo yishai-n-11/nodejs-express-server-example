@@ -11,5 +11,5 @@ app.listen(PORT, () => {
   console.log("server listening on port ", PORT);
 });
 
-const allTaskRouter = require("./routes/allTasks.routes");
-const taskRouter = require("./routes/tasks.routes");
+app.use("/allTasks", allTaskRouter);
+app.use("/task", taskRouter);
