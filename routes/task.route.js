@@ -4,7 +4,17 @@ const fs = require("fs");
 const path = require("path");
 const dataPath = path.join(__dirname + "/../data/tasks.json");
 router.use(express.json());
-
+const cors = require("cors");
+const corsOptions = {
+  origin: "*",
+  methods: ["GET", "POST", "DELETE"],
+};
+const corsPreflightOp = {
+  origin: "*",
+  methods: ["PUT"],
+};
+router.use(cors(corsOptions));
+router.options("/", cors(corsPreflightOp));
 router.get("/:id", (req, res) => {
   const id = req.params.id;
   const data = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
