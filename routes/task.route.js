@@ -3,7 +3,8 @@ const router = express.Router();
 const fs = require("fs");
 const path = require("path");
 const dataPath = path.join(__dirname + "/../data/tasks.json");
-router.use(router.json());
+router.use(express.json());
+
 router.get("/:id", (req, res) => {
   const id = req.params.id;
   const data = JSON.parse(fs.readFileSync(dataPath, "utf-8"));

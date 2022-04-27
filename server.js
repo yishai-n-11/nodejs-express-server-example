@@ -3,10 +3,12 @@ const app = express();
 const PORT = 5454;
 const fs = require("fs");
 const path = require("path");
-const dataPath = __dirname + "/./data/tasks.json";
-const allTaskRouter = require("./routes/allTasks.routes");
-const taskRouter = require("./routes/tasks.routes");
-
+const allTaskRouter = require("./routes/allTasks.route");
+const taskRouter = require("./routes/task.route");
+const middlewares = require("./middleware/middleware.module");
+app.use(express.json());
+app.use(middlewares.logger.logTime);
+app.use(middlewares.logger.logReqDetails);
 app.listen(PORT, () => {
   console.log("server listening on port ", PORT);
 });
